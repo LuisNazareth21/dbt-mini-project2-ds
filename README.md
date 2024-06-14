@@ -1,4 +1,4 @@
-# Digitalskola - Datakage - Project 2
+# Digitalskola - Datakage - Mini Project 2
 
 This project provides a comprehensive guide on using DBT (Data Build Tool) to transform data effectively. The workflow for this project includes uploading CSV data, storing it in a PostgreSQL database, and transforming raw data into business-specific tables using DBT.
 
