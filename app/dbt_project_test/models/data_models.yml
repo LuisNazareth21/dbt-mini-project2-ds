@@ -1,0 +1,223 @@
+models:
+  - name: dim_categories
+    description: "DWH for tb_categories"
+    materialized: table
+    columns:
+      - name: categoryid
+        tests:
+          - unique
+          - not_null
+      - name: categoryname
+        tests:
+          - not_null
+
+  - name: dim_customers
+    description: "DWH for tb_customers"
+    materialized: table
+    columns:
+      - name: customerid
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_employees
+    description: "DWH for tb_employees"
+    materialized: table
+    columns:
+      - name: employeeid
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_employee_territories
+    description: "DWH for tb_employee_territories"
+    materialized: table
+    columns:
+      - name: territoryid
+        tests:
+          - unique
+          - not_null
+      - name: employeeid
+        tests:
+          - not_null
+
+  - name: dim_products
+    description: "DWH for tb_products"
+    materialized: table
+    columns:
+      - name: productid
+        tests:
+          - unique
+          - not_null
+      - name: productname
+        tests:
+          - not_null
+      - name: supplierid
+        tests:
+          - not_null
+      - name: categoryid
+        tests:
+          - not_null
+      - name: unitprice
+        tests:
+          - not_null
+
+  - name: dim_regions
+    description: "DWH for tb_regions"
+    materialized: table
+    columns:
+      - name: regionid
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_shippers
+    description: "DWH for tb_shippers"
+    materialized: table
+    columns:
+      - name: shipperid
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_suppliers
+    description: "DWH for tb_suppliers"
+    materialized: table
+    columns:
+      - name: supplierid
+        tests:
+          - unique
+          - not_null
+      - name: companyname
+        tests:
+          - not_null
+
+  - name: dim_territories
+    description: "DWH for tb_territories"
+    materialized: table
+    columns:
+      - name: territoryid
+        tests:
+          - unique
+          - not_null
+      - name: regionid
+        tests:
+          - not_null
+
+  - name: fact_order_details
+    description: "DWH for tb_order_details. Creating a new column to identify the unique order-product"
+    materialized: table
+    columns:
+      - name: orderdetailid
+        tests:
+          - unique
+          - not_null
+      - name: orderid
+        tests:
+          - not_null
+      - name: productid
+        tests:
+          - not_null
+      - name: unitprice
+        tests:
+          - not_null
+      - name: quantity
+        tests:
+          - not_null
+      - name: discount
+        tests:
+          - not_null
+      - name: item_price
+        tests:
+          - not_null
+
+  - name: fact_orders
+    description: "DWH for tb_orders"
+    materialized: table
+    columns:
+      - name: orderid
+        tests:
+          - unique
+          - not_null
+      - name: customerid
+        tests:
+          - not_null
+      - name: employeeid
+        tests:
+          - not_null
+      - name: orderdate
+        tests:
+          - not_null
+      - name: shippeddate
+        tests:
+          - not_null
+      - name: shipvia
+        tests:
+          - not_null
+      - name: freight
+        tests:
+          - not_null
+      - name: shipname
+        tests:
+          - not_null
+      - name: shipaddress
+        tests:
+          - not_null
+      - name: shipcity
+        tests:
+          - not_null
+      - name: shipregion
+        tests:
+          - not_null
+      - name: shippostalcode
+        tests:
+          - not_null
+      - name: shipcountry
+        tests:
+          - not_null
+      - name: gross_revenue
+
+  - name: datamart_monthly_supplier_gross_revenue
+    description: "Datamart to calculate gross revenue per supplier"
+    materialized: table
+    columns:
+      - name: order_month
+        tests:
+          - not_null
+      - name: companyname
+        tests:
+          - not_null
+      - name: gross_revenue
+        tests:
+          - not_null
+
+  - name: datamart_monthly_category_sold
+    description: "Datamart to calculate gross revenue per supplier"
+    materialized: table
+    columns:
+      - name: order_month
+        tests:
+          - not_null
+      - name: categoryname
+        tests:
+          - not_null
+      - name: total_item_sold
+        tests:
+          - not_null
+
+  - name: datamart_monthly_best_employee
+    description: "Datamart to calculate gross revenue per supplier"
+    materialized: table
+    columns:
+      - name: order_month
+        tests:
+          - not_null
+      - name: employeename
+        tests:
+          - not_null
+      - name: gross_revenue
+        tests:
+          - not_null
+      - name: ranking
+        tests:
+          - not_null

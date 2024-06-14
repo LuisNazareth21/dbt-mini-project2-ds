@@ -1,0 +1,29 @@
+# profiles.yml
+
+dbt_project_test:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      user: datakage
+      password: digitalskola2024
+      port: 5432
+      dbname: project_2
+      schema: public
+    staging:
+      type: postgres
+      host: staging_host
+      user: staging_user
+      password: staging_password
+      port: 5432
+      dbname: staging_db
+      schema: public
+    prod:
+      type: postgres
+      host: prod_host
+      user: prod_user
+      password: prod_password
+      port: 5432
+      dbname: prod_db
+      schema: public

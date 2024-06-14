@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: raw
+    database: project_2
+    schema: public
+    tables:
+      - name: tb_categories
+      - name: tb_customers
+      - name: tb_employee_territories
+      - name: tb_employees
+      - name: tb_order_details
+      - name: tb_orders
+      - name: tb_products
+      - name: tb_regions
+      - name: tb_shippers
+      - name: tb_suppliers
+      - name: tb_territories
